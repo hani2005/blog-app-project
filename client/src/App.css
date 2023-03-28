@@ -1,0 +1,325 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #222;
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+main {
+  padding: 10px;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  align-items: center;
+  width: 100%;
+}
+
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header a.logo {
+  font-size: 1.9rem;
+  color: #0BA25C;
+}
+
+header nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.login-btn {
+  padding: 0.5rem 1.2rem;
+  background-color: #0BA25C;
+  color: white;
+  border-radius: 5px;
+}
+
+.register-btn {
+  padding: 0.5rem 0.8rem;
+  background-color: #0BA25C;
+  color: white;
+  border-radius: 5px;
+}
+
+.post {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.post time {
+  font-size: 1rem;
+  color: #0BA25C;
+}
+
+@media screen and (min-width: 700px) {
+  .post {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+}
+
+.post .texts h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.post .texts a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.post p.info {
+  margin: 24px 0;
+  color: #888;
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.post p.info a.author {
+  color: #333;
+}
+
+.post p.summary {
+  margin: 10px 0;
+  line-height: 1.5rem;
+}
+
+form.login,
+form.register {
+  width: 350px;
+  margin: 0 auto;
+}
+
+input {
+  display: block;
+  margin-bottom: 5px;
+  width: 100%;
+  padding: 10px 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 0.8rem;
+}
+
+button {
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  background-color: #0BA25C;
+  border: 0;
+  color: #fff;
+  border-radius: 5px;
+  padding: 11px 0;
+  font-size: 0.9rem;
+}
+
+form.login h1,
+form.register h1 {
+  text-align: center;
+  color: #0BA25C;
+}
+
+.create-post {
+  width: 100%;
+}
+
+.edit-post-page {
+  width: 100%;
+}
+
+.add-post {
+  padding: 0.5rem 0.8rem;
+  background-color: #0BA25C;
+  color: white;
+  border-radius: 5px;
+}
+
+.logout-btn {
+  padding: 0.5rem 0.8rem;
+  background-color: #0BA25C;
+  color: white;
+  border-radius: 5px;
+}
+
+.username {
+  padding: 0.5rem 0.8rem;
+  background-color: transparent;
+  color: #0BA25C;
+  border-radius: 5px;
+}
+
+.post-page {
+  width: 700px;
+}
+
+.post-page .image {
+  max-height: 300px;
+  display: flex;
+  overflow: hidden;
+}
+
+.post-page .image img {
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+}
+
+.post-page a {
+  color: #333;
+  text-decoration: underline;
+}
+
+.post-page h1 {
+  text-align: center;
+  margin: 10px 0 5px;
+}
+
+.post-page time {
+  text-align: center;
+  display: block;
+  font-size: 0.9rem;
+  color: #0BA25C;
+  margin: 15px 0;
+}
+
+.post-page .author {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.content p {
+  line-height: 1.6rem;
+  margin: 20px 0;
+}
+
+.content p br {
+  display: none;
+}
+
+.content li {
+  margin-bottom: 10px;
+}
+
+.edit-row {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.post-page a.edit-btn {
+  background-color: #0BA25C;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+a svg {
+  height: 20px;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #0BA25C;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 480px) {
+  header {
+    display: block;
+  }
+  header nav {
+    gap: 14px;
+    margin-top: 1.5rem;
+  }
+  .username {
+    padding: 0;
+  }
+  .post .texts h2 {
+    font-size: 1.5rem;
+  }
+  .post p.summary {
+    font-size: 1rem;
+  }
+  .post {
+    margin-bottom: 60px;
+  }
+  .post-page {
+    width: 400px;
+    padding: 0 1rem;
+  }
+  .post-page h1 {
+    font-size: 1.7rem;
+    text-align: start;
+  }
+  .content {
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  header nav {
+    gap: 8px;
+  }
+  .add-post {
+    font-size: 0.7rem;
+  }
+  .username {
+    font-size: 0.7rem;
+  }
+  .logout-btn {
+    font-size: 0.7rem;
+  }
+  .post-page {
+    width: 300px;
+  }
+  .post-page h1 {
+    font-size: 1.15rem;
+    text-align: center;
+  }
+  .post-page time {
+    font-size: 0.7rem;
+  }
+  .post-page .author {
+    font-size: 0.75rem;
+  }
+  .content p {
+    font-size: 0.8rem;
+  }
+}
