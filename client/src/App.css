@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
 * {
   box-sizing: border-box;
@@ -6,7 +7,7 @@
 
 body {
   color: #222;
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 a {
@@ -19,7 +20,7 @@ img {
 
 main {
   padding: 10px;
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -41,9 +42,23 @@ header a {
   color: inherit;
 }
 
-header a.logo {
-  font-size: 1.9rem;
-  color: #0BA25C;
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo strong {
+  margin-right: -0.1rem;
+}
+
+.logo img {
+  width: 29px;
+  margin-right: 3px;
+}
+
+.logo span {
+  font-size: 1.3rem;
+  letter-spacing: -1px;
 }
 
 header nav {
@@ -54,39 +69,90 @@ header nav {
 
 .login-btn {
   padding: 0.5rem 1.2rem;
-  background-color: #0BA25C;
+  background-color: black;
   color: white;
   border-radius: 5px;
 }
 
 .register-btn {
   padding: 0.5rem 0.8rem;
-  background-color: #0BA25C;
+  background-color: black;
   color: white;
   border-radius: 5px;
 }
 
+.homepage-banner {
+  display: flex;
+  margin-bottom: 3rem;
+  align-items: center;
+}
+
+.homepage-banner img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.homepage-banner-img {
+  width: 40rem;
+}
+
+.homepage-banner h1 {
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  font-size: 3rem;
+  margin-bottom: -1rem;
+  color: #333;
+}
+
+.homepage-banner h5 {
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: -1px;
+  font-weight: 500;
+  color: #333;
+}
+
+.homepage h4 {
+  letter-spacing: -1px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
 .post {
-  display: grid;
-  grid-template-columns: 1fr;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 50px; */
+  display: flex;
+  flex-direction: column;
+}
+
+.post-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.post-img {
+  flex-shrink: 0;
+  margin-bottom: 0.5rem;
+}
+
+.post-img img {
+  width: 22rem;
+  height: 15rem;
+  border-radius: 10px;
 }
 
 .post time {
   font-size: 1rem;
-  color: #0BA25C;
-}
-
-@media screen and (min-width: 700px) {
-  .post {
-    grid-template-columns: 0.9fr 1.1fr;
-  }
+  color: #333;
 }
 
 .post .texts h2 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
 }
 
 .post .texts a {
@@ -95,7 +161,6 @@ header nav {
 }
 
 .post p.info {
-  margin: 24px 0;
   color: #888;
   font-size: 1rem;
   font-weight: bold;
@@ -104,8 +169,15 @@ header nav {
   align-items: center;
 }
 
-.post p.info a.author {
-  color: #333;
+.post .author {
+  color: #333 !important;
+  text-transform: capitalize;
+}
+
+.post-page-detail {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .post p.summary {
@@ -134,7 +206,7 @@ button {
   cursor: pointer;
   width: 100%;
   display: block;
-  background-color: #0BA25C;
+  background-color: black;
   border: 0;
   color: #fff;
   border-radius: 5px;
@@ -145,7 +217,7 @@ button {
 form.login h1,
 form.register h1 {
   text-align: center;
-  color: #0BA25C;
+  color: black;
 }
 
 .create-post {
@@ -158,14 +230,14 @@ form.register h1 {
 
 .add-post {
   padding: 0.5rem 0.8rem;
-  background-color: #0BA25C;
+  background-color: black;
   color: white;
   border-radius: 5px;
 }
 
 .logout-btn {
   padding: 0.5rem 0.8rem;
-  background-color: #0BA25C;
+  background-color: black;
   color: white;
   border-radius: 5px;
 }
@@ -173,8 +245,10 @@ form.register h1 {
 .username {
   padding: 0.5rem 0.8rem;
   background-color: transparent;
-  color: #0BA25C;
+  color: black;
+  text-transform: capitalize;
   border-radius: 5px;
+  font-weight: 500;
 }
 
 .post-page {
@@ -200,22 +274,29 @@ form.register h1 {
 
 .post-page h1 {
   text-align: center;
-  margin: 10px 0 5px;
+  margin: 1rem 0;
+  font-size: 2.2rem;
+  letter-spacing: -1px;
 }
 
 .post-page time {
-  text-align: center;
-  display: block;
+  font-weight: 600;
+  letter-spacing: -0.5px;
   font-size: 0.9rem;
-  color: #0BA25C;
-  margin: 15px 0;
+  color: black;
 }
 
 .post-page .author {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 0.85rem;
+  font-size: 1rem;
+  letter-spacing: -0.5px;
   font-weight: bold;
+  text-transform: capitalize;
+}
+
+.post-page-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0 3rem 0;
 }
 
 .content p {
@@ -231,13 +312,8 @@ form.register h1 {
   margin-bottom: 10px;
 }
 
-.edit-row {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
 .post-page a.edit-btn {
-  background-color: #0BA25C;
+  background-color: black;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -252,74 +328,213 @@ a svg {
 }
 
 .copyright {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: bold;
-  color: #0BA25C;
+  color: rgb(226, 226, 226);
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 2.5rem;
+  font-weight: 500;
+  letter-spacing: -0.5px;
 }
 
-@media screen and (max-width: 480px) {
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: black;
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.footer-texts {
+  text-align: center;
+}
+
+.footer-texts h2 {
+  color: rgb(226, 226, 226);
+  font-size: 2rem;
+  letter-spacing: -1px;
+  margin-bottom: -1rem;
+  font-weight: 600;
+}
+
+.footer-texts h4 {
+  color: rgb(226, 226, 226);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 50px;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer-content span {
+  color: rgb(226, 226, 226);
+  font-size: 1rem;
+}
+
+.footer-content h4 {
+  color: #949393;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: -1px;
+}
+
+@media screen and (max-width: 942px) {
+  .post-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .homepage-banner {
+    flex-direction: column;
+  }
+
+  .post-img img {
+    width: 100%;
+    height: 16rem;
+  }
+}
+
+@media screen and (max-width: 679px) {
   header {
     display: block;
   }
+
   header nav {
     gap: 14px;
     margin-top: 1.5rem;
   }
+
+  .post-container {
+    grid-template-columns: 1fr;
+  }
+
+  .post {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .post-img img {
+    width: 15rem;
+    height: 10rem;
+  }
+
+  .post .texts h2 {
+    font-size: 1rem;
+  }
+
+  .post p.summary {
+    font-size: 0.85rem;
+  }
+
+  .post time {
+    font-size: 0.85rem;
+  }
+
+  .post .texts {
+    margin-left: 0.5rem;
+    width: 100%;
+  }
+
+  .post p.info {
+    margin-top: -0.4rem;
+  }
+
+  .homepage-banner-img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 498px) {
   .username {
     padding: 0;
   }
+
   .post .texts h2 {
     font-size: 1.5rem;
   }
+
+  .post-img img {
+    width: 100%;
+    height: 100%;
+  }
+
   .post p.summary {
     font-size: 1rem;
   }
+
   .post {
-    margin-bottom: 60px;
+    flex-direction: column;
   }
+
   .post-page {
     width: 400px;
     padding: 0 1rem;
   }
+
   .post-page h1 {
     font-size: 1.7rem;
     text-align: start;
   }
+
   .content {
     padding: 0 1rem;
   }
 }
 
-@media screen and (max-width: 280px) {
+@media screen and (max-width: 391px) {
+  .post .texts h2 {
+    font-size: 1.1rem;
+  }
+
+  .post p.summary {
+    font-size: 0.85rem;
+  }
+
   header nav {
-    gap: 8px;
+    flex-direction: column;
+    align-items: baseline;
   }
-  .add-post {
-    font-size: 0.7rem;
+
+  .footer-content span {
+    font-size: 0.85rem;
   }
-  .username {
-    font-size: 0.7rem;
+
+  .footer-content h4 {
+    font-size: 1rem;
   }
-  .logout-btn {
-    font-size: 0.7rem;
-  }
-  .post-page {
-    width: 300px;
-  }
-  .post-page h1 {
-    font-size: 1.15rem;
-    text-align: center;
-  }
-  .post-page time {
-    font-size: 0.7rem;
-  }
-  .post-page .author {
-    font-size: 0.75rem;
-  }
-  .content p {
+
+  .copyright {
     font-size: 0.8rem;
+  }
+
+  .footer-texts h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-texts h4 {
+    font-size: 0.8rem;
+  }
+
+  .footer-links {
+    gap: 20px;
+  }
+
+  form.login,
+  form.register {
+    width: 100%;
   }
 }
