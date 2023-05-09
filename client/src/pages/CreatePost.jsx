@@ -19,7 +19,6 @@ function CreatePost() {
     data.set("file", files[0])
     const response = await fetch("https://blog-app-msrz.onrender.com/post", {
       method: "POST",
-      mode: 'no-cors',
       body: data,
       credentials: "include"
     })
