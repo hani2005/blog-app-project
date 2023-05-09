@@ -9,7 +9,7 @@ function PostPage() {
   const { id } = useParams()
 
   useEffect(() => {
-    fetch(`http://localhost:3000/post/${id}`).then((response) => {
+    fetch(`https://blog-app-msrz.onrender.com/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo)
       })
@@ -49,7 +49,7 @@ function PostPage() {
       </div>
       <h1>{postInfo.title}</h1>
       <div className="image">
-        <img src={`http://localhost:3000/${postInfo.cover}`} alt="" />
+        <img src={`https://blog-app-msrz.onrender.com/${postInfo.cover}`} alt="" />
       </div>
       <div
         className="content"
