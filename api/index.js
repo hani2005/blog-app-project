@@ -20,6 +20,7 @@ const secret = "sasofasfo43ogoeg5546p45kpojhuu21y8e3"
 
 // middlewares
 app.use(cors())
+// ({ credentials: true, origin: "http://localhost:5173" })
 app.use(express.json())
 app.use(cookieParser())
 app.use("/uploads", express.static(__dirname + "/uploads"))
@@ -31,6 +32,10 @@ mongoose.connect(process.env.DATABASE_URL)
 app.get("/", (req, res) => {
   res.send("Here")
 })
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+}) 
 
 // to register
 app.post("/register", async (req, res) => {
