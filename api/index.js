@@ -19,7 +19,7 @@ const salt = bcrypt.genSaltSync(10)
 const secret = "sasofasfo43ogoeg5546p45kpojhuu21y8e3"
 
 // middlewares
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
+app.use(cors)
 app.use(express.json())
 app.use(cookieParser())
 app.use("/uploads", express.static(__dirname + "/uploads"))
@@ -27,6 +27,10 @@ const uploadMiddleware = multer({ dest: "uploads/" , limits:{fieldSize: 25 * 102
 
 // connecting to database
 mongoose.connect(process.env.DATABASE_URL)
+
+app.get("/", (req, res) => {
+  res.send("Here")
+})
 
 // to register
 app.post("/register", async (req, res) => {
