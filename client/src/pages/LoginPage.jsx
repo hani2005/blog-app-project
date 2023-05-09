@@ -12,6 +12,7 @@ function LoginPage() {
     e.preventDefault()
     const response = await fetch("https://blog-app-msrz.onrender.com/login", {
       method: "POST",
+      mode: 'no-cors',
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
       credentials: "include"

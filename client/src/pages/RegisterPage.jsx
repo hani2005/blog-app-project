@@ -8,6 +8,7 @@ function RegisterPage() {
     e.preventDefault()
     const response = await fetch("https://blog-app-msrz.onrender.com/register", {
       method: "POST",
+      mode: 'no-cors',
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" }
     })

@@ -7,7 +7,8 @@ function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext)
   useEffect(() => {
     fetch("https://blog-app-msrz.onrender.com/profile", {
-      credentials: "include"
+      credentials: "include",
+      mode: 'no-cors',
     }).then((response) => {
       response.json().then((userInfo) => {
         setUserInfo(userInfo)
@@ -18,6 +19,7 @@ function Header() {
   function logout() {
     fetch("https://blog-app-msrz.onrender.com/logout", {
       credentials: "include",
+      mode: 'no-cors',
       method: "POST"
     })
     setUserInfo(null)

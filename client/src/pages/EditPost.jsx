@@ -32,6 +32,7 @@ function EditPost() {
     }
     const response = await fetch("https://blog-app-msrz.onrender.com/post", {
       method: "PUT",
+      mode: 'no-cors',
       body: data,
       credentials: "include"
     })

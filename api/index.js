@@ -33,9 +33,9 @@ app.get("/", (req, res) => {
   res.send("Here")
 })
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-}) 
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*")
+// }) 
 
 // to register
 app.post("/register", async (req, res) => {
