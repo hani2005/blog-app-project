@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { UserContext } from "./UserContext"
-import logo from "../public/the-blog.png"
+import logo from "/the-blog.png"
 
 function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext)

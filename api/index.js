@@ -19,7 +19,7 @@ const salt = bcrypt.genSaltSync(10)
 const secret = "sasofasfo43ogoeg5546p45kpojhuu21y8e3"
 
 // middlewares
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
+app.use(cors({ credentials: true, origin: ["http://localhost:5173", "http://localhost:3000" , "https://blog-app-k9kb.onrender.com"] }))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/uploads", express.static(__dirname + "/uploads"))
@@ -150,4 +150,4 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc)
 })
 
-app.listen(3000)
+app.listen(process.env.PORT)
