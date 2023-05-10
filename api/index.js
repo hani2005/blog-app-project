@@ -150,4 +150,6 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc)
 })
 
-app.listen(10000, '0.0.0.0')
+const PORT = process.env.PORT
+
+app.listen(PORT, console.log("server running at port 3000"))
