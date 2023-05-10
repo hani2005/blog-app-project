@@ -150,4 +150,5 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc)
 })
 
-app.listen(process.env.PORT)
+var port = process.env.PORT || 3000
+app.listen(port)
