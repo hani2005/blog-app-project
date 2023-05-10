@@ -150,4 +150,4 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc)
 })
 
-app.listen(PORT)
+app.listen(10000, '0.0.0.0')
