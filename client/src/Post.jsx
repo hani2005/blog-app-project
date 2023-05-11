@@ -8,7 +8,7 @@ function Post({ _id, title, summary, cover, createdAt, author }) {
     <div className="post" key={_id}>
       <div className="post-img">
         <Link to={`/post/${_id}`}>
-          <Image src={cover} alt="" />
+          <img src={"https://blog-app-project.vercel.app/api/uploads/" + cover} alt="" />
         </Link>
       </div>
       <div className="texts">
