@@ -49,7 +49,7 @@ function PostPage() {
       </div>
       <h1>{postInfo.title}</h1>
       <div className="image">
-        <img src={`https://blog-app-project.vercel.app/api/${postInfo.cover}`} alt="" />
+        <img src={`https://blog-app-project.vercel.app/${postInfo.cover}`} alt="" />
       </div>
       <div
         className="content"
