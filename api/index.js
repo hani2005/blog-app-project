@@ -134,7 +134,7 @@ app.put("/api/post", uploadMiddleware.single("file"), async (req, res) => {
   mongoose.connect(process.env.DATABASE_URL)
   if (req.file) {
     const { originalname, path, mimetype } = req.file
-    const updateCoverData = await uploadToS3(path, originalname, mimetype)
+    await uploadToS3(path, originalname, mimetype)
   }
   const { token } = req.cookies
   jwt.verify(token, secret, {}, async (err, info) => {
@@ -149,7 +149,7 @@ app.put("/api/post", uploadMiddleware.single("file"), async (req, res) => {
       title,
       summary,
       content,
-      cover: updateCoverData ? updateCoverData : postDoc.cover
+      cover: coverData ? coverData : postDoc.cover
     })
     res.json(postDoc)
   })
