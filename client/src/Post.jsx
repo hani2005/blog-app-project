@@ -1,13 +1,14 @@
 import React from "react"
 import { formatISO9075 } from "date-fns"
 import { Link } from "react-router-dom"
+import Image from "./Image"
 
 function Post({ _id, title, summary, cover, createdAt, author }) {
   return (
     <div className="post" key={_id}>
       <div className="post-img">
         <Link to={`/post/${_id}`}>
-          <img src={"https://blog-app-project.vercel.app/api/" + cover} alt="" />
+          <Image src={cover} alt="" />
         </Link>
       </div>
       <div className="texts">
