@@ -6,7 +6,7 @@ function HomePage() {
   const [visible, setVisible] = useState(3)
 
   useEffect(() => {
-    fetch("http://localhost:3000/post").then((response) => {
+    fetch("http://localhost:3000/api/post").then((response) => {
       response.json().then((posts) => {
         setPosts(posts)
       })
