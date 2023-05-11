@@ -6,7 +6,7 @@ import logo from "/the-blog.png"
 function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext)
   useEffect(() => {
-    fetch("https://blog-app-k9kb.onrender.com/profile", {
+    fetch("http://localhost:3000/profile", {
       credentials: "include"
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -16,7 +16,7 @@ function Header() {
   }, [])
 
   function logout() {
-    fetch("https://blog-app-k9kb.onrender.com/logout", {
+    fetch("http://localhost:3000/logout", {
       credentials: "include",
       method: "POST"
     })

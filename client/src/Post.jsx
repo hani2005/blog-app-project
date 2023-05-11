@@ -7,7 +7,7 @@ function Post({ _id, title, summary, cover, createdAt, author }) {
     <div className="post" key={_id}>
       <div className="post-img">
         <Link to={`/post/${_id}`}>
-          <img src={"https://blog-app-k9kb.onrender.com/" + cover} alt="" />
+          <img src={"http://localhost:3000/" + cover} alt="" />
         </Link>
       </div>
       <div className="texts">

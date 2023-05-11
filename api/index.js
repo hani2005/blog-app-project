@@ -19,22 +19,20 @@ const salt = bcrypt.genSaltSync(10)
 const secret = "sasofasfo43ogoeg5546p45kpojhuu21y8e3"
 
 // middlewares
-app.use(cors({ credentials: true, origin: ["https://frontend-blog-app.onrender.com", "http://localhost:3000" , "https://blog-app-k9kb.onrender.com"] }))
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/uploads", express.static(__dirname + "/uploads"))
 const uploadMiddleware = multer({ dest: "uploads/" , limits:{fieldSize: 25 * 1024 * 1024} })
 
-// connecting to database
-mongoose.connect(process.env.DATABASE_URL)
-
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
+  mongoose.connect(process.env.DATABASE_URL)
   res.send("Here")
 })
 
 // to register
-app.post("/register", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials","true")
+app.post("/api/register", async (req, res) => {
+  mongoose.connect(process.env.DATABASE_URL)
   const { username, password } = req.body
   try {
     const userDoc = await User.create({
@@ -48,8 +46,8 @@ app.post("/register", async (req, res) => {
 })
 
 // to login
-app.post("/login", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials","true")
+app.post("/api/login", async (req, res) => {
+  mongoose.connect(process.env.DATABASE_URL)
   const { username, password } = req.body
   const userDoc = await User.findOne({ username })
   const passOk = bcrypt.compareSync(password, userDoc.password)
@@ -67,8 +65,8 @@ app.post("/login", async (req, res) => {
 })
 
 // to get user profile
-app.get("/profile", (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials","true")
+app.get("/api/profile", (req, res) => {
+  mongoose.connect(process.env.DATABASE_URL)
   const { token } = req.cookies
   jwt.verify(token, secret, {}, (err, info) => {
     if (err) throw err
@@ -77,14 +75,13 @@ app.get("/profile", (req, res) => {
 })
 
 // logout
-app.post("/logout", (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials","true")
+app.post("/api/logout", (req, res) => {
   res.cookie("token", "").json("ok")
 })
 
 // create new post
-app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials","true")
+app.post("/api/post", uploadMiddleware.single("file"), async (req, res) => {
+  mongoose.connect(process.env.DATABASE_URL)
   // files upload
   const { originalname, path } = req.file
   const parts = originalname.split(".")
@@ -110,8 +107,8 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
 })
 
 // update post
-app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials","true")
+app.put("/api/post", uploadMiddleware.single("file"), async (req, res) => {
+  mongoose.connect(process.env.DATABASE_URL)
   let newPath = null
   if (req.file) {
     const { originalname, path } = req.file
@@ -140,8 +137,8 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
 })
 
 // get posts
-app.get("/post", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials","true")
+app.get("/api/post", async (req, res) => {
+  mongoose.connect(process.env.DATABASE_URL)
   res.json(
     await Post.find()
       .populate("author", ["username"])
@@ -151,13 +148,11 @@ app.get("/post", async (req, res) => {
 })
 
 // get single post page
-app.get("/post/:id", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials","true")
+app.get("/api/post/:id", async (req, res) => {
+  mongoose.connect(process.env.DATABASE_URL)
   const { id } = req.params
   const postDoc = await Post.findById(id).populate("author", ["username"])
   res.json(postDoc)
 })
 
-const PORT = process.env.PORT
-
-app.listen(PORT, console.log("server running at port 3000"))
+app.listen(3000)
