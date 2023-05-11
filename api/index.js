@@ -149,7 +149,7 @@ app.put("/api/post", uploadMiddleware.single("file"), async (req, res) => {
       title,
       summary,
       content,
-      cover: coverData ? coverData : postDoc.cover
+      // cover: coverData ? coverData : postDoc.cover
     })
     res.json(postDoc)
   })
