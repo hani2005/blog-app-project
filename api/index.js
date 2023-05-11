@@ -110,7 +110,7 @@ app.post("/api/post", uploadMiddleware.single("file"), async (req, res) => {
   mongoose.connect(process.env.DATABASE_URL)
   // files upload
   const { originalname, path, mimetype } = req.file
-  await uploadToS3(path, originalname, mimetype)
+  const coverData = await uploadToS3(path, originalname, mimetype)
 
   // get information
   const { token } = req.cookies
@@ -122,7 +122,7 @@ app.post("/api/post", uploadMiddleware.single("file"), async (req, res) => {
       title,
       summary,
       content,
-      cover: path,
+      cover: coverData,
       author: info.id
     })
     res.json(postDoc)
