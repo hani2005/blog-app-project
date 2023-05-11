@@ -48,7 +48,7 @@ app.post("/register", async (req, res) => {
 
 // to login
 app.post("/login", async (req, res) => {
-  // res.setHeader("Access-Control-Allow-Credentials","true")
+  res.setHeader("Access-Control-Allow-Credentials","true")
   const { username, password } = req.body
   const userDoc = await User.findOne({ username })
   const passOk = bcrypt.compareSync(password, userDoc.password)
