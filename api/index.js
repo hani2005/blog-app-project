@@ -23,7 +23,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/uploads", express.static(__dirname + "/uploads"))
-const uploadMiddleware = multer({ dest: "uploads/" , limits:{fieldSize: 25 * 1024 * 1024} })
+// const uploadMiddleware = multer({ dest: "uploads/" , limits:{fieldSize: 25 * 1024 * 1024} })
 
 app.get("/api/", (req, res) => {
   mongoose.connect(process.env.DATABASE_URL)
@@ -80,7 +80,8 @@ app.post("/api/logout", (req, res) => {
 })
 
 // create new post
-app.post("/api/post", uploadMiddleware.single("file"), async (req, res) => {
+// uploadMiddleware.single("file"),
+app.post("/api/post", async (req, res) => {
   mongoose.connect(process.env.DATABASE_URL)
   // files upload
   const { originalname, path } = req.file
@@ -107,7 +108,8 @@ app.post("/api/post", uploadMiddleware.single("file"), async (req, res) => {
 })
 
 // update post
-app.put("/api/post", uploadMiddleware.single("file"), async (req, res) => {
+// uploadMiddleware.single("file"),
+app.put("/api/post", async (req, res) => {
   mongoose.connect(process.env.DATABASE_URL)
   let newPath = null
   if (req.file) {
