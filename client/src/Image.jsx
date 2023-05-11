@@ -4,7 +4,7 @@ function Image({ src, ...rest }) {
   src =
     src && src.includes("https://")
       ? src
-      : "https://blog-app-project.vercel.app/uploads/" + src
+      : "http://localhost:3000/uploads/" + src
   return <img {...rest} src={src} alt={""} />
 }
 
