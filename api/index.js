@@ -132,9 +132,10 @@ app.post("/api/post", uploadMiddleware.single("file"), async (req, res) => {
 // update post
 app.put("/api/post", uploadMiddleware.single("file"), async (req, res) => {
   mongoose.connect(process.env.DATABASE_URL)
+  let coverDataUpdate = null
   if (req.file) {
     const { originalname, path, mimetype } = req.file
-    await uploadToS3(path, originalname, mimetype)
+    coverDataUpdate = await uploadToS3(path, originalname, mimetype)
   }
   const { token } = req.cookies
   jwt.verify(token, secret, {}, async (err, info) => {
@@ -149,7 +150,7 @@ app.put("/api/post", uploadMiddleware.single("file"), async (req, res) => {
       title,
       summary,
       content,
-      // cover: coverData ? coverData : postDoc.cover
+      cover: coverDataUpdate ? coverDataUpdate : postDoc.cover
     })
     res.json(postDoc)
   })
