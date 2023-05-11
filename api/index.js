@@ -34,6 +34,7 @@ app.get("/", (req, res) => {
 
 // to register
 app.post("/register", async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true")
   const { username, password } = req.body
   try {
     const userDoc = await User.create({
@@ -67,6 +68,7 @@ app.post("/login", async (req, res) => {
 
 // to get user profile
 app.get("/profile", (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true")
   const { token } = req.cookies
   jwt.verify(token, secret, {}, (err, info) => {
     if (err) throw err
@@ -76,11 +78,13 @@ app.get("/profile", (req, res) => {
 
 // logout
 app.post("/logout", (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true")
   res.cookie("token", "").json("ok")
 })
 
 // create new post
 app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true")
   // files upload
   const { originalname, path } = req.file
   const parts = originalname.split(".")
@@ -107,6 +111,7 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
 
 // update post
 app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true")
   let newPath = null
   if (req.file) {
     const { originalname, path } = req.file
@@ -136,6 +141,7 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
 
 // get posts
 app.get("/post", async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true")
   res.json(
     await Post.find()
       .populate("author", ["username"])
@@ -146,6 +152,7 @@ app.get("/post", async (req, res) => {
 
 // get single post page
 app.get("/post/:id", async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true")
   const { id } = req.params
   const postDoc = await Post.findById(id).populate("author", ["username"])
   res.json(postDoc)
