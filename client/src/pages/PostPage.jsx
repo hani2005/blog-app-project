@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { formatISO9075 } from "date-fns"
 import { UserContext } from "../UserContext"
+import Image from "../Image"
 
 function PostPage() {
   const [postInfo, setPostInfo] = useState(null)
@@ -49,7 +50,7 @@ function PostPage() {
       </div>
       <h1>{postInfo.title}</h1>
       <div className="image">
-        <img src={`https://blog-app-project.vercel.app/${postInfo.cover}`} alt="" />
+        <Image src={`${postInfo.cover}`} alt="" />
       </div>
       <div
         className="content"
