@@ -9,6 +9,7 @@ const Post = require("./models/Post")
 const app = express()
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
+const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3")
 const multer = require("multer")
 const fs = require("fs")
 
@@ -18,12 +19,37 @@ const salt = bcrypt.genSaltSync(10)
 // jwt secret
 const secret = "sasofasfo43ogoeg5546p45kpojhuu21y8e3"
 
+const bucket = 'hani-booking-app'
+
 // middlewares
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/uploads", express.static(__dirname + "/uploads"))
-// const uploadMiddleware = multer({ dest: "uploads/" , limits:{fieldSize: 25 * 1024 * 1024} })
+const uploadMiddleware = multer({ dest: "/tmp" , limits:{fieldSize: 25 * 1024 * 1024} })
+
+async function uploadToS3(path, originalFilename, mimetype) {
+  const client = new S3Client({
+    region: "us-east-1",
+    credentials: {
+      accessKeyId: process.env.S3_ACCESS_KEY,
+      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY
+    }
+  })
+  const parts = originalFilename.split(".")
+  const ext = parts[parts.length - 1]
+  const newFilename = Date.now() + "." + ext
+  await client.send(
+    new PutObjectCommand({
+      Bucket: bucket,
+      Body: fs.readFileSync(path),
+      Key: newFilename,
+      ContentType: mimetype,
+      ACL: "public-read"
+    })
+  )
+  return `https://${bucket}.s3.amazonaws.com/${newFilename}`
+}
 
 app.get("/api/", (req, res) => {
   mongoose.connect(process.env.DATABASE_URL)
@@ -80,15 +106,11 @@ app.post("/api/logout", (req, res) => {
 })
 
 // create new post
-// uploadMiddleware.single("file"),
-app.post("/api/post", async (req, res) => {
+app.post("/api/post", uploadMiddleware.single("file"), async (req, res) => {
   mongoose.connect(process.env.DATABASE_URL)
   // files upload
-  const { originalname, path } = req.file
-  const parts = originalname.split(".")
-  const ext = parts[parts.length - 1]
-  const newPath = path + "." + ext
-  fs.renameSync(path, newPath)
+  const { originalname, path, mimetype } = req.file
+  await uploadToS3(path, originalname, mimetype)
 
   // get information
   const { token } = req.cookies
@@ -108,16 +130,13 @@ app.post("/api/post", async (req, res) => {
 })
 
 // update post
-// uploadMiddleware.single("file"),
-app.put("/api/post", async (req, res) => {
+app.put("/api/post", uploadMiddleware.single("file"), async (req, res) => {
   mongoose.connect(process.env.DATABASE_URL)
   let newPath = null
   if (req.file) {
-    const { originalname, path } = req.file
-    const parts = originalname.split(".")
-    const ext = parts[parts.length - 1]
-    newPath = path + "." + ext
-    fs.renameSync(path, newPath)
+    const { originalname, path, mimetype } = req.file
+    const newPathData = await uploadToS3(path, originalname, mimetype)
+    newPath(newPathData)
   }
   const { token } = req.cookies
   jwt.verify(token, secret, {}, async (err, info) => {
