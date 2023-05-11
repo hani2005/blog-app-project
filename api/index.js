@@ -19,7 +19,7 @@ const salt = bcrypt.genSaltSync(10)
 const secret = "sasofasfo43ogoeg5546p45kpojhuu21y8e3"
 
 // middlewares
-app.use(cors({ credentials: true, origin: ["http://localhost:5173", "http://localhost:3000" , "https://blog-app-k9kb.onrender.com"] }))
+app.use(cors({ credentials: true, origin: ["https://frontend-blog-app.onrender.com", "http://localhost:3000" , "https://blog-app-k9kb.onrender.com"] }))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/uploads", express.static(__dirname + "/uploads"))
@@ -48,6 +48,7 @@ app.post("/register", async (req, res) => {
 
 // to login
 app.post("/login", async (req, res) => {
+  // res.setHeader("Access-Control-Allow-Credentials","true")
   const { username, password } = req.body
   const userDoc = await User.findOne({ username })
   const passOk = bcrypt.compareSync(password, userDoc.password)
