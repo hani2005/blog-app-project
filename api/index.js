@@ -30,7 +30,7 @@ const uploadMiddleware = multer({ dest: "/tmp" , limits:{fieldSize: 25 * 1024 * 
 
 async function uploadToS3(path, originalFilename, mimetype) {
   const client = new S3Client({
-    region: "us-east-1",
+    region: "eu-north-1",
     credentials: {
       accessKeyId: process.env.S3_ACCESS_KEY,
       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY
