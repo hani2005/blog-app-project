@@ -4,7 +4,7 @@ function Image({ src, ...rest }) {
   src =
     src && src.includes("https://")
       ? src
-      : "http://localhost:3000/uploads/" + src
+      : "https://blog-app-k9kb.onrender.com/uploads/" + src
   return <img {...rest} src={src} alt={""} />
 }
 
