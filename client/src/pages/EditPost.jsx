@@ -60,7 +60,7 @@ function EditPost() {
       />
       <input type="file" onChange={(e) => setFiles(e.target.files)} />
       <Editor onChange={setContent} value={content} />
-      <button style={{ marginTop: "5px" }}>Update Post</button>
+      <button style={{ marginTop: "5px" }}>Update post</button>
     </form>
   )
 }
