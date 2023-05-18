@@ -12,23 +12,33 @@ function CreatePost() {
 
   async function createNewPost(e) {
     e.preventDefault()
-    const data = new FormData()
-    data.set("title", title)
-    data.set("summary", summary)
-    data.set("content", content)
-    data.set("file", files[0])
-    const response = await fetch("https://blog-app-project.vercel.app/api/post", {
-      method: "POST",
-      body: data,
-      credentials: "include"
-    })
-    if (response.ok) {
-        setRedirect(true)
+    try {
+      if (!title || !summary || !content || !files) {
+        alert("Required fields cant be empty")
+      } else {
+        const data = new FormData()
+        data.set("title", title)
+        data.set("summary", summary)
+        data.set("content", content)
+        data.set("file", files[0])
+        const response = await fetch("http://localhost:3000/api/post", {
+          method: "POST",
+          body: data,
+          credentials: "include"
+        })
+        if (response.ok) {
+          setRedirect(true)
+          alert("Post created successfully")
+        }
+      }
+    } catch (e) {
+      console.log(e)
+      alert("Error : please try again later")
     }
   }
 
   if (redirect) {
-    return <Navigate to={"/"}/>
+    return <Navigate to={"/"} />
   }
 
   return (
@@ -45,11 +55,8 @@ function CreatePost() {
         value={summary}
         onChange={(e) => setSummary(e.target.value)}
       />
-      <input
-        type="file"
-        onChange={(e) => setFiles(e.target.files)}
-      />
-      <Editor onChange={setContent} value={content}/>
+      <input type="file" onChange={(e) => setFiles(e.target.files)} />
+      <Editor onChange={setContent} value={content} />
       <button style={{ marginTop: "5px" }}>Create post</button>
     </form>
   )

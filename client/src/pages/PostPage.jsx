@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom"
 import { formatISO9075 } from "date-fns"
 import { UserContext } from "../UserContext"
 import Image from "../Image"
+import { Toaster } from "react-hot-toast"
 
 function PostPage() {
   const [postInfo, setPostInfo] = useState(null)
@@ -10,7 +11,7 @@ function PostPage() {
   const { id } = useParams()
 
   useEffect(() => {
-    fetch(`https://blog-app-project.vercel.app/api/post/${id}`).then((response) => {
+    fetch(`http://localhost:3000/api/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo)
       })
@@ -21,6 +22,9 @@ function PostPage() {
 
   return (
     <div className="post-page">
+      <div>
+        <Toaster />
+      </div>
       <div className="post-page-info">
         <div className="post-page-detail">
           <span className="author">by @{postInfo.author.username}</span>

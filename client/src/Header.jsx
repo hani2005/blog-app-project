@@ -6,7 +6,7 @@ import logo from "/the-blog.png"
 function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext)
   useEffect(() => {
-    fetch("https://blog-app-project.vercel.app/api/profile", {
+    fetch("http://localhost:3000/api/profile", {
       credentials: "include"
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -16,7 +16,7 @@ function Header() {
   }, [])
 
   function logout() {
-    fetch("https://blog-app-project.vercel.app/api/logout", {
+    fetch("http://localhost:3000/api/logout", {
       credentials: "include",
       method: "POST"
     })
@@ -29,18 +29,19 @@ function Header() {
     <header>
       <Link to="/" className="logo">
         <img src={logo} alt="" />
-        <span><strong>The</strong> Blog</span>
       </Link>
       <nav>
         {username && (
           <>
             <span className="username">Hello, {username}</span>
-            <Link className="add-post" to={"/create"}>
-              Add new post
-            </Link>
-            <a className="logout-btn" onClick={logout}>
-              Logout
-            </a>
+            <div>
+              <Link className="add-post" to={"/create"}>
+                Add new post
+              </Link>
+              <a className="logout-btn" onClick={logout}>
+                Logout
+              </a>
+            </div>
           </>
         )}
         {!username && (

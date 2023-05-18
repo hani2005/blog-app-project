@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+
 
 * {
   box-sizing: border-box;
@@ -19,7 +21,6 @@ img {
 }
 
 main {
-  padding: 10px;
   max-width: 1100px;
   margin: 0 auto;
   display: flex;
@@ -31,7 +32,6 @@ main {
 header {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
   margin-bottom: 50px;
   align-items: center;
   width: 100%;
@@ -42,29 +42,16 @@ header a {
   color: inherit;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo strong {
-  margin-right: -0.1rem;
-}
-
 .logo img {
-  width: 29px;
+  width: 120px;
   margin-right: 3px;
-}
-
-.logo span {
-  font-size: 1.3rem;
-  letter-spacing: -1px;
 }
 
 header nav {
   display: flex;
   gap: 24px;
   align-items: center;
+  margin-left: 0.3rem;
 }
 
 .login-btn {
@@ -72,6 +59,7 @@ header nav {
   background-color: black;
   color: white;
   border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .register-btn {
@@ -79,6 +67,7 @@ header nav {
   background-color: black;
   color: white;
   border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .homepage-banner {
@@ -90,6 +79,7 @@ header nav {
 .homepage-banner img {
   width: 100%;
   border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .homepage-banner-img {
@@ -120,17 +110,13 @@ header nav {
 }
 
 .post {
-  /* display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 50px; */
   display: flex;
   flex-direction: column;
 }
 
 .post-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
 
@@ -140,9 +126,10 @@ header nav {
 }
 
 .post-img img {
-  width: 22rem;
-  height: 15rem;
+  width: 100%;
+  height: 18rem;
   border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .post time {
@@ -202,6 +189,15 @@ input {
   font-size: 0.8rem;
 }
 
+.homepage-btn {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  padding: 1rem;
+  letter-spacing: -0.5px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 button {
   cursor: pointer;
   width: 100%;
@@ -233,6 +229,7 @@ form.register h1 {
   background-color: black;
   color: white;
   border-radius: 5px;
+  margin-right: 1rem;
 }
 
 .logout-btn {
@@ -243,7 +240,6 @@ form.register h1 {
 }
 
 .username {
-  padding: 0.5rem 0.8rem;
   background-color: transparent;
   color: black;
   text-transform: capitalize;
@@ -256,7 +252,7 @@ form.register h1 {
 }
 
 .post-page .image {
-  max-height: 300px;
+  border-radius: 10px;
   display: flex;
   overflow: hidden;
 }
@@ -386,24 +382,90 @@ a svg {
 }
 
 .footer-content h4 {
-  color: #949393;
+  color: rgb(226, 226, 226);
   margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   letter-spacing: -1px;
 }
 
+.news-input {
+  display: flex;
+  align-items: center;
+  background-color: rgb(241 245 249);
+  border: 1px solid rgb(203 213 225);
+  padding: 0.7rem 0.7rem;
+  border-radius: 5px;
+  gap: 3px;
+}
+
+.news-icon {
+  font-size: 1.9rem;
+}
+
+.news-input input {
+  width: fit-content;
+  border: none;
+  background-color: transparent;
+  padding: 0.5rem;
+  outline: none;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.news-input input::placeholder {
+  color: black;
+}
+
+.news-container {
+  display: flex;
+}
+
+.news button {
+  width: fit-content;
+  padding: 1.1rem 1rem;
+  border-radius: 10px;
+  margin-left: 0.3rem;
+}
+
+.news {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4rem 0 2rem 0;
+}
+
+.news h1 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+.news span {
+  margin-top: 1.4rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: -0.5px;
+}
+
 @media screen and (max-width: 942px) {
-  .post-container {
+  /* .post-container {
     grid-template-columns: repeat(2, 1fr);
-  }
+  } */
 
   .homepage-banner {
     flex-direction: column;
   }
 
-  .post-img img {
+  /* .post-img img {
     width: 100%;
     height: 16rem;
+  } */
+}
+
+@media screen and (max-width: 722px) {
+  .post-page {
+    width: 100%;
   }
 }
 
@@ -414,22 +476,22 @@ a svg {
 
   header nav {
     gap: 14px;
-    margin-top: 1.5rem;
+    margin-top: -1.5rem;
   }
 
-  .post-container {
+  /* .post-container {
     grid-template-columns: 1fr;
-  }
+  } */
 
-  .post {
+  /* .post {
     flex-direction: row;
     width: 100%;
-  }
+  } */
 
-  .post-img img {
+  /* .post-img img {
     width: 15rem;
     height: 10rem;
-  }
+  } */
 
   .post .texts h2 {
     font-size: 1rem;
@@ -455,20 +517,25 @@ a svg {
   .homepage-banner-img {
     width: 100%;
   }
+
+  .news h1 {
+    font-size: 1.4rem;
+  }
+
+  .news-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .news button {
+    margin: 1rem 0 0 0;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 498px) {
-  .username {
-    padding: 0;
-  }
-
   .post .texts h2 {
     font-size: 1.5rem;
-  }
-
-  .post-img img {
-    width: 100%;
-    height: 100%;
   }
 
   .post p.summary {
@@ -479,9 +546,8 @@ a svg {
     flex-direction: column;
   }
 
-  .post-page {
-    width: 400px;
-    padding: 0 1rem;
+  .username {
+    font-size: 1.1rem;
   }
 
   .post-page h1 {
@@ -489,8 +555,25 @@ a svg {
     text-align: start;
   }
 
+  .post-page-info {
+    margin-bottom: 4rem;
+    display: block;
+  } 
+
+  .post-page-detail {
+    margin-bottom: 1.1rem;
+  }
+
+  .post-page .author {
+    font-size: 1.2rem;
+  }
+
   .content {
     padding: 0 1rem;
+  }
+
+  .news h1 br {
+    display: none;
   }
 }
 
@@ -536,5 +619,12 @@ a svg {
   form.login,
   form.register {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 278px) {
+  .add-post {
+    display: block;
+    margin-bottom: 1rem;
   }
 }

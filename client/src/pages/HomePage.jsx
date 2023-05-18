@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react"
 import Post from "../Post"
+import News from "../News"
 
 function HomePage() {
   const [posts, setPosts] = useState([])
   const [visible, setVisible] = useState(3)
 
   useEffect(() => {
-    fetch("https://blog-app-project.vercel.app/api/post").then((response) => {
+    fetch("http://localhost:3000/api/post").then((response) => {
       response.json().then((posts) => {
         setPosts(posts)
       })
@@ -40,7 +41,8 @@ function HomePage() {
             .slice(0, visible)
             .map((post) => <Post {...post} key={post._id} />)}
       </div>
-      <button onClick={showMorePosts}>Show More</button>
+      <button className="homepage-btn" onClick={showMorePosts}>Show More</button>
+      <News />
     </div>
   )
 }
